@@ -5,11 +5,41 @@ class Operation:
     def execute(self):
         raise NotImplementedError
 
+class Addition(Operation):
+    def execute(self):
+        return self.a + self.b
+
+class Subtraction(Operation):
+    def execute(self):
+        return self.a - self.b
+
 def main():
     while True:
-        num1 = input("First number: ")
-        num2 = input("Second number: ")
-        print(f"You entered {num1} and {num2}")
+        print("\n1. Addition\n2. Subtraction")
+        try:
+            choice = int(input("Choose operation (1-2): "))
+        except ValueError:
+            print("Invalid input. Please enter 1 or 2.")
+            continue
+
+        try:
+            num1 = float(input("First number: "))
+            num2 = float(input("Second number: "))
+        except ValueError:
+            print("Invalid number. Please try again.")
+            continue
+
+        if choice == 1:
+            op = Addition(num1, num2)
+        elif choice == 2:
+            op = Subtraction(num1, num2)
+        else:
+            print("Invalid choice.")
+            continue
+
+        result = op.execute()
+        print(f"Result: {result}")
+
         again = input("Try again? (y/n): ").lower()
         if again != 'y':
             break
