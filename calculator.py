@@ -1,3 +1,10 @@
+class Operation:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+    def execute(self):
+        raise NotImplementedError
+
 def main():
     while True:
         num1 = input("First number: ")
