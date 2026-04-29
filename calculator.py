@@ -1,3 +1,4 @@
+# Same as commit 6 – the loop and exit message are already correct.
 class Operation:
     def __init__(self, a, b):
         self.a = a
