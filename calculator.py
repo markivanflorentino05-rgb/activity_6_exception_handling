@@ -13,13 +13,21 @@ class Subtraction(Operation):
     def execute(self):
         return self.a - self.b
 
+class Multiplication(Operation):
+    def execute(self):
+        return self.a * self.b
+
+class Division(Operation):
+    def execute(self):
+        return self.a / self.b
+
 def main():
     while True:
-        print("\n1. Addition\n2. Subtraction")
+        print("\n1. Addition\n2. Subtraction\n3. Multiplication\n4. Division")
         try:
-            choice = int(input("Choose operation (1-2): "))
+            choice = int(input("Choose operation (1-4): "))
         except ValueError:
-            print("Invalid input. Please enter 1 or 2.")
+            print("Invalid input. Please enter 1-4.")
             continue
 
         try:
@@ -33,6 +41,10 @@ def main():
             op = Addition(num1, num2)
         elif choice == 2:
             op = Subtraction(num1, num2)
+        elif choice == 3:
+            op = Multiplication(num1, num2)
+        elif choice == 4:
+            op = Division(num1, num2)
         else:
             print("Invalid choice.")
             continue
