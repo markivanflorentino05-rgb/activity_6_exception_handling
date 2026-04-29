@@ -1,4 +1,3 @@
-# Same as commit 6 – the loop and exit message are already correct.
 class Operation:
     def __init__(self, a, b):
         self.a = a
@@ -31,6 +30,12 @@ def get_number(prompt):
         except ValueError:
             print("Invalid input. Please enter a number.")
 
+def format_result(result):
+    if result == int(result):
+        return str(int(result))
+    else:
+        return f"{result:.5f}"   # show up to 5 decimal places
+
 def calculate(choice, a, b):
     if choice == 1:
         return Addition(a, b).execute()
@@ -60,7 +65,7 @@ def main():
 
         try:
             result = calculate(choice, num1, num2)
-            print(f"Result: {result}")
+            print(f"Result: {format_result(result)}")
         except ZeroDivisionError as e:
             print(f"Math error: {e}")
         except Exception as e:
