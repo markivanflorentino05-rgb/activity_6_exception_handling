@@ -1,3 +1,10 @@
+LOGO = r"""
+   *********************************************
+   *       SIMPLE CALCULATOR (OOP Edition)     *
+   *         ~ with Exception Handling ~       *
+   *********************************************
+"""
+
 class Operation:
     def __init__(self, a, b):
         self.a = a
@@ -28,13 +35,13 @@ def get_number(prompt):
         try:
             return float(input(prompt))
         except ValueError:
-            print("Invalid input. Please enter a number.")
+            print("❗ Invalid input. Please enter a number.")
 
 def format_result(result):
     if result == int(result):
         return str(int(result))
     else:
-        return f"{result:.5f}"   # show up to 5 decimal places
+        return f"{result:.5f}"
 
 def calculate(choice, a, b):
     if choice == 1:
@@ -49,15 +56,20 @@ def calculate(choice, a, b):
         raise ValueError("Invalid operation choice")
 
 def main():
+    print(LOGO)
     while True:
-        print("\n1. Addition\n2. Subtraction\n3. Multiplication\n4. Division")
+        print("\n--- Available Operations ---")
+        print("1. Addition (+)")
+        print("2. Subtraction (-)")
+        print("3. Multiplication (*)")
+        print("4. Division (/)")
         try:
-            choice = int(input("Choose operation (1-4): "))
+            choice = int(input("\nEnter your choice (1-4): "))
             if choice not in [1,2,3,4]:
-                print("Please enter 1,2,3, or 4.")
+                print("❗ Please choose 1,2,3, or 4.")
                 continue
         except ValueError:
-            print("Invalid input. Enter a number.")
+            print("❗ Invalid input. Enter a number.")
             continue
 
         num1 = get_number("First number: ")
@@ -65,16 +77,16 @@ def main():
 
         try:
             result = calculate(choice, num1, num2)
-            print(f"Result: {format_result(result)}")
+            print(f"\n✅ RESULT: {format_result(result)}")
         except ZeroDivisionError as e:
-            print(f"Math error: {e}")
+            print(f"\n❌ Math error: {e}")
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"\n❌ Unexpected error: {e}")
 
-        again = input("Try again? (y/n): ").lower()
+        again = input("\n🔄 Try again? (y/n): ").lower()
         if again != 'y':
+            print("\nThank you for using the calculator! 👋")
             break
-    print("Thank you!")
 
 if __name__ == "__main__":
     main()
